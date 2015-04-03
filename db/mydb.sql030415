@@ -1,0 +1,350 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 03-Abr-2015 às 23:08
+-- Versão do servidor: 5.6.17
+-- PHP Version: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `mydb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `acompanhamento`
+--
+
+CREATE TABLE IF NOT EXISTS `acompanhamento` (
+  `idacompanhamento` int(11) NOT NULL AUTO_INCREMENT,
+  `grupo_idgrupo` int(11) NOT NULL,
+  `usuario_idusuario` int(11) NOT NULL,
+  `dt_cadastro` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idacompanhamento`),
+  KEY `fk_acompanhamento_grupo1_idx` (`grupo_idgrupo`),
+  KEY `fk_acompanhamento_usuario1_idx` (`usuario_idusuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `acompanhamento`
+--
+
+TRUNCATE TABLE `acompanhamento`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `acompanhamento_pesquisa`
+--
+
+CREATE TABLE IF NOT EXISTS `acompanhamento_pesquisa` (
+  `acompanhamento_idacompanhamento` int(11) NOT NULL,
+  `pesquisa_idpesquisa` int(11) NOT NULL,
+  `pesquisa_itens_idpesquisa_itens` int(11) NOT NULL,
+  PRIMARY KEY (`acompanhamento_idacompanhamento`,`pesquisa_idpesquisa`,`pesquisa_itens_idpesquisa_itens`),
+  KEY `fk_acompanhamento_has_pesquisa_pesquisa1_idx` (`pesquisa_idpesquisa`),
+  KEY `fk_acompanhamento_has_pesquisa_acompanhamento1_idx` (`acompanhamento_idacompanhamento`),
+  KEY `fk_acompanhamento_pesquisa_pesquisa_itens1_idx` (`pesquisa_itens_idpesquisa_itens`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `acompanhamento_pesquisa`
+--
+
+TRUNCATE TABLE `acompanhamento_pesquisa`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `bacia`
+--
+
+CREATE TABLE IF NOT EXISTS `bacia` (
+  `idbacia` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(155) DEFAULT NULL,
+  PRIMARY KEY (`idbacia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `bacia`
+--
+
+TRUNCATE TABLE `bacia`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `grupo`
+--
+
+CREATE TABLE IF NOT EXISTS `grupo` (
+  `idgrupo` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(155) DEFAULT NULL,
+  `dt_criacao` varchar(45) DEFAULT NULL,
+  `trecho_idtrecho` int(11) NOT NULL,
+  PRIMARY KEY (`idgrupo`),
+  KEY `fk_grupo_trecho1_idx` (`trecho_idtrecho`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `grupo`
+--
+
+TRUNCATE TABLE `grupo`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `grupo_usuario`
+--
+
+CREATE TABLE IF NOT EXISTS `grupo_usuario` (
+  `grupo_idgrupo` int(11) NOT NULL,
+  `usuario_idusuario` int(11) NOT NULL,
+  PRIMARY KEY (`grupo_idgrupo`,`usuario_idusuario`),
+  KEY `fk_grupo_has_usuario_usuario1_idx` (`usuario_idusuario`),
+  KEY `fk_grupo_has_usuario_grupo1_idx` (`grupo_idgrupo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `grupo_usuario`
+--
+
+TRUNCATE TABLE `grupo_usuario`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `perfil`
+--
+
+CREATE TABLE IF NOT EXISTS `perfil` (
+  `idperfil` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(155) DEFAULT NULL,
+  `peso` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idperfil`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Truncate table before insert `perfil`
+--
+
+TRUNCATE TABLE `perfil`;
+--
+-- Extraindo dados da tabela `perfil`
+--
+
+INSERT INTO `perfil` (`idperfil`, `descricao`, `peso`) VALUES
+(1, 'Admin', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pesquisa`
+--
+
+CREATE TABLE IF NOT EXISTS `pesquisa` (
+  `idpesquisa` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(145) DEFAULT NULL,
+  `status_idstatus` int(11) NOT NULL,
+  PRIMARY KEY (`idpesquisa`),
+  KEY `fk_pesquisa_status1_idx` (`status_idstatus`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `pesquisa`
+--
+
+TRUNCATE TABLE `pesquisa`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pesquisa_itens`
+--
+
+CREATE TABLE IF NOT EXISTS `pesquisa_itens` (
+  `idpesquisa_itens` int(11) NOT NULL,
+  `descricao` varchar(145) DEFAULT NULL,
+  `pesquisa_idpesquisa` int(11) NOT NULL,
+  `status_idstatus` int(11) NOT NULL,
+  PRIMARY KEY (`idpesquisa_itens`),
+  KEY `fk_pesquisa_itens_pesquisa1_idx` (`pesquisa_idpesquisa`),
+  KEY `fk_pesquisa_itens_status1_idx` (`status_idstatus`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `pesquisa_itens`
+--
+
+TRUNCATE TABLE `pesquisa_itens`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `rio`
+--
+
+CREATE TABLE IF NOT EXISTS `rio` (
+  `idrio` int(11) NOT NULL AUTO_INCREMENT,
+  `bacia_idbacia` int(11) NOT NULL,
+  `descricao` varchar(155) DEFAULT NULL,
+  PRIMARY KEY (`idrio`),
+  KEY `fk_rio_bacia1_idx` (`bacia_idbacia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `rio`
+--
+
+TRUNCATE TABLE `rio`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `status`
+--
+
+CREATE TABLE IF NOT EXISTS `status` (
+  `idstatus` int(11) NOT NULL AUTO_INCREMENT COMMENT '	',
+  `descricao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idstatus`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Truncate table before insert `status`
+--
+
+TRUNCATE TABLE `status`;
+--
+-- Extraindo dados da tabela `status`
+--
+
+INSERT INTO `status` (`idstatus`, `descricao`) VALUES
+(1, 'Ativo'),
+(2, 'Inativo');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `trecho`
+--
+
+CREATE TABLE IF NOT EXISTS `trecho` (
+  `idtrecho` int(11) NOT NULL AUTO_INCREMENT,
+  `rio_idrio` int(11) NOT NULL,
+  `descricao` varchar(155) DEFAULT NULL,
+  `lat` varchar(45) DEFAULT NULL COMMENT '	',
+  `lon` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idtrecho`),
+  KEY `fk_trecho_rio1_idx` (`rio_idrio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `trecho`
+--
+
+TRUNCATE TABLE `trecho`;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(155) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `telefone` varchar(45) DEFAULT NULL,
+  `perfil_idperfil` int(11) NOT NULL,
+  `status_idstatus` int(11) NOT NULL COMMENT '			',
+  `authKey` varchar(45) DEFAULT NULL,
+  `password_reset_token` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idusuario`),
+  KEY `fk_usuario_perfil1_idx` (`perfil_idperfil`),
+  KEY `fk_usuario_status1_idx` (`status_idstatus`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Truncate table before insert `usuario`
+--
+
+TRUNCATE TABLE `usuario`;
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`idusuario`, `nome`, `username`, `password`, `telefone`, `perfil_idperfil`, `status_idstatus`, `authKey`, `password_reset_token`) VALUES
+(2, 'adm', 'a@a.com', '1234', NULL, 1, 1, NULL, NULL);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `acompanhamento`
+--
+ALTER TABLE `acompanhamento`
+  ADD CONSTRAINT `fk_acompanhamento_grupo1` FOREIGN KEY (`grupo_idgrupo`) REFERENCES `grupo` (`idgrupo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acompanhamento_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `acompanhamento_pesquisa`
+--
+ALTER TABLE `acompanhamento_pesquisa`
+  ADD CONSTRAINT `fk_acompanhamento_has_pesquisa_acompanhamento1` FOREIGN KEY (`acompanhamento_idacompanhamento`) REFERENCES `acompanhamento` (`idacompanhamento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acompanhamento_has_pesquisa_pesquisa1` FOREIGN KEY (`pesquisa_idpesquisa`) REFERENCES `pesquisa` (`idpesquisa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acompanhamento_pesquisa_pesquisa_itens1` FOREIGN KEY (`pesquisa_itens_idpesquisa_itens`) REFERENCES `pesquisa_itens` (`idpesquisa_itens`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `grupo`
+--
+ALTER TABLE `grupo`
+  ADD CONSTRAINT `fk_grupo_trecho1` FOREIGN KEY (`trecho_idtrecho`) REFERENCES `trecho` (`idtrecho`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `grupo_usuario`
+--
+ALTER TABLE `grupo_usuario`
+  ADD CONSTRAINT `fk_grupo_has_usuario_grupo1` FOREIGN KEY (`grupo_idgrupo`) REFERENCES `grupo` (`idgrupo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_grupo_has_usuario_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `pesquisa`
+--
+ALTER TABLE `pesquisa`
+  ADD CONSTRAINT `fk_pesquisa_status1` FOREIGN KEY (`status_idstatus`) REFERENCES `status` (`idstatus`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `pesquisa_itens`
+--
+ALTER TABLE `pesquisa_itens`
+  ADD CONSTRAINT `fk_pesquisa_itens_pesquisa1` FOREIGN KEY (`pesquisa_idpesquisa`) REFERENCES `pesquisa` (`idpesquisa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_pesquisa_itens_status1` FOREIGN KEY (`status_idstatus`) REFERENCES `status` (`idstatus`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `rio`
+--
+ALTER TABLE `rio`
+  ADD CONSTRAINT `fk_rio_bacia1` FOREIGN KEY (`bacia_idbacia`) REFERENCES `bacia` (`idbacia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `trecho`
+--
+ALTER TABLE `trecho`
+  ADD CONSTRAINT `fk_trecho_rio1` FOREIGN KEY (`rio_idrio`) REFERENCES `rio` (`idrio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `fk_usuario_perfil1` FOREIGN KEY (`perfil_idperfil`) REFERENCES `perfil` (`idperfil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuario_status1` FOREIGN KEY (`status_idstatus`) REFERENCES `status` (`idstatus`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
