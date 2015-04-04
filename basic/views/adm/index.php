@@ -1,9 +1,11 @@
 <?php
-/* @var $this yii\web\View */
-?>
-<h1>adm/index</h1>
+use yii\helpers\Html;
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+/* @var $this yii\web\View */
+$this->title = 'Administração';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="site-index">
+
+   
+</div>

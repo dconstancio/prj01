@@ -38,7 +38,9 @@ AppAsset::register($this);
                     ['label' => 'Home', 'url' => ['/site/index']],
                     // ['label' => 'About', 'url' => ['/site/about']],
                     // ['label' => 'Contact', 'url' => ['/site/contact']],
-                    ['label' => 'Configurações', 'url' => ['/adm/index'], 'visible' => !Yii::$app->user->isGuest ],
+                    ['label' => 'Administração', 'url' => ['/adm/index'], 
+                    'items'=>[ ['label' => 'Usuários', 'url' => ['/admin-usuario/index']]],  
+                    'visible' => !Yii::$app->user->isGuest ],
                      Yii::$app->user->isGuest ?
                         ['label' => 'Entrar', 'url' => ['/site/login']] :
                         ['label' => 'Sair (' . Yii::$app->user->identity->username . ')',

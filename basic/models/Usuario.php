@@ -16,6 +16,7 @@ use Yii;
  * @property integer $status_idstatus
  * @property string $authKey
  * @property string $password_reset_token
+ * @property string $status
  *
  * @property Acompanhamento[] $acompanhamentos
  * @property GrupoUsuario[] $grupoUsuarios
@@ -39,10 +40,11 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['perfil_idperfil', 'status_idstatus'], 'required'],
-            [['perfil_idperfil', 'status_idstatus'], 'integer'],
+            [['perfil_idperfil', 'status'], 'required'],
+            [['perfil_idperfil'], 'integer'],
+            [['status'], 'string'],
             [['nome'], 'string', 'max' => 155],
-            [['username', 'password', 'telefone', 'authKey', 'password_reset_token'], 'string', 'max' => 45]
+            [['username', 'password', 'telefone'], 'string', 'max' => 45]
         ];
     }
 
@@ -54,13 +56,13 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             'idusuario' => 'Idusuario',
             'nome' => 'Nome',
-            'username' => 'Username',
-            'password' => 'Password',
+            'username' => 'E-mail',
+            'password' => 'Senha',
             'telefone' => 'Telefone',
-            'perfil_idperfil' => 'Perfil Idperfil',
-            'status_idstatus' => 'Status Idstatus',
+            'perfil_idperfil' => 'Perfil',
             'authKey' => 'Auth Key',
             'password_reset_token' => 'Password Reset Token',
+            'status' => 'Status',
         ];
     }
 
@@ -103,9 +105,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->hasOne(Status::className(), ['idstatus' => 'status_idstatus']);
     }
-
-
-  public static function getLogin($username,$password)
+ public static function getLogin($username,$password)
     {
 
 

@@ -11,7 +11,12 @@ return [
     'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'app\commands',
     'modules' => [
-        'gii' => 'yii\gii\Module',
+        'gii' => array(
+    'class'=>'system.gii.GiiModule',
+    'password'=>'<your gii password>',
+    'generatorPaths'=>array(
+        'vendor.phundament.gii-template-collection',   
+    )
     ],
     'components' => [
         'cache' => [
