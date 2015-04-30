@@ -43,7 +43,8 @@ class Rio extends \yii\db\ActiveRecord
     {
         return [
             'idrio' => 'Idrio',
-            'bacia_idbacia' => 'Bacia Idbacia',
+            'bacia_idbacia' => 'Bacia',
+             'BaciaDescricao' => 'Bacia',
             'descricao' => 'Descricao',
         ];
     }
@@ -51,7 +52,7 @@ class Rio extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getBaciaIdbacia()
+    public function getBacia()
     {
         return $this->hasOne(Bacia::className(), ['idbacia' => 'bacia_idbacia']);
     }
@@ -62,5 +63,9 @@ class Rio extends \yii\db\ActiveRecord
     public function getTrechoes()
     {
         return $this->hasMany(Trecho::className(), ['rio_idrio' => 'idrio']);
+    }
+
+     public function getBaciaDescricao() {
+     return $this->bacia->descricao;
     }
 }

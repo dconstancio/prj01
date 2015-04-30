@@ -27,7 +27,7 @@ AppAsset::register($this);
         <?php
             NavBar::begin([
                 'brandLabel' => 'Sistema',
-                'brandUrl' => Yii::$app->homeUrl,
+                'brandUrl' => Yii::$app->homeUrl ."?r=adm%2Findex",
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
@@ -39,7 +39,12 @@ AppAsset::register($this);
                     // ['label' => 'About', 'url' => ['/site/about']],
                     // ['label' => 'Contact', 'url' => ['/site/contact']],
                     ['label' => 'Administração', 'url' => ['/adm/index'], 
-                    'items'=>[ ['label' => 'Usuários', 'url' => ['/admin-usuario/index']]],  
+                    'items'=>[ 
+                        ['label' => 'Usuários', 'url' => ['/admin-usuario/index']],
+                        ['label' => 'Bacias', 'url' => ['/admin-bacia/index']],
+                        ['label' => 'Rios', 'url' => ['/admin-rio/index']],
+
+                    ],  
                     'visible' => !Yii::$app->user->isGuest ],
                      Yii::$app->user->isGuest ?
                         ['label' => 'Entrar', 'url' => ['/site/login']] :

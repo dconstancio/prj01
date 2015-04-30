@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Usuario */
+/* @var $model app\models\bacia */
 
-$this->title = 'Criar usuário';
-$this->params['breadcrumbs'][] = ['label' => 'Usuários', 'url' => ['index']];
+$this->title = 'Create Bacia';
+$this->params['breadcrumbs'][] = ['label' => 'Bacias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="usuario-create">
+<div class="bacia-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
