@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\rio;
+use app\models\Trecho;
 
 /**
- * rioSearch represents the model behind the search form about `app\models\rio`.
+ * adminTrechoSearch represents the model behind the search form about `app\models\Trecho`.
  */
-class rioSearch extends rio
+class adminTrechoSearch extends Trecho
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class rioSearch extends rio
     public function rules()
     {
         return [
-            [['idrio', 'bacia_idbacia'], 'integer'],
-            [['descricao'], 'safe'],
+            [['idtrecho', 'rio_idrio'], 'integer'],
+            [['descricao', 'lat', 'lon'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class rioSearch extends rio
      */
     public function search($params)
     {
-        $query = rio::find();
+        $query = Trecho::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,13 +54,15 @@ class rioSearch extends rio
             // $query->where('0=1');
             return $dataProvider;
         }
- 
+
         $query->andFilterWhere([
-            'idrio' => $this->idrio,
-            'bacia_idbacia' => $this->bacia_idbacia,
+            'idtrecho' => $this->idtrecho,
+            'rio_idrio' => $this->rio_idrio,
         ]);
 
-        $query->andFilterWhere(['like', 'descricao', $this->descricao]);
+        $query->andFilterWhere(['like', 'descricao', $this->descricao])
+            ->andFilterWhere(['like', 'lat', $this->lat])
+            ->andFilterWhere(['like', 'lon', $this->lon]);
 
         return $dataProvider;
     }

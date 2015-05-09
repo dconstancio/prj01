@@ -41,8 +41,11 @@ AppAsset::register($this);
                     ['label' => 'Administração', 'url' => ['/adm/index'], 
                     'items'=>[ 
                         ['label' => 'Usuários', 'url' => ['/admin-usuario/index']],
+                        ['label' => 'Grupos', 'url' => ['/admin-grupo/index']],
+                        '<li class="divider"></li>',
                         ['label' => 'Bacias', 'url' => ['/admin-bacia/index']],
                         ['label' => 'Rios', 'url' => ['/admin-rio/index']],
+                        ['label' => 'Trechos', 'url' => ['/admin-trecho/index']],
 
                     ],  
                     'visible' => !Yii::$app->user->isGuest ],
@@ -57,8 +60,17 @@ AppAsset::register($this);
         ?>
 
         <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            <?= 
+
+
+            Breadcrumbs::widget([
+
+                'links' =>   isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'homeLink'=>[
+            'label' => 'Administração',
+            'url' => ['/adm/index', 'r'=>'adm/index']
+          
+        ]
             ]) ?>
             <?= $content ?>
         </div>

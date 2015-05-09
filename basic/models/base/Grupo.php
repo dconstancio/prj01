@@ -1,21 +1,21 @@
 <?php
 
-namespace app\models;
+namespace app\models\base;
 
 use Yii;
 
 /**
- * This is the model class for table "grupo".
+ * This is the base-model class for table "grupo".
  *
  * @property integer $idgrupo
  * @property string $descricao
  * @property string $dt_criacao
  * @property integer $trecho_idtrecho
  *
- * @property Acompanhamento[] $acompanhamentos
- * @property Trecho $trechoIdtrecho
- * @property GrupoUsuario[] $grupoUsuarios
- * @property Usuario[] $usuarioIdusuarios
+ * @property \app\models\Acompanhamento[] $acompanhamentos
+ * @property \app\models\Trecho $trechoIdtrecho
+ * @property \app\models\GrupoUsuario[] $grupoUsuarios
+ * @property \app\models\Usuario[] $usuarioIdusuarios
  */
 class Grupo extends \yii\db\ActiveRecord
 {
@@ -49,8 +49,7 @@ class Grupo extends \yii\db\ActiveRecord
             'idgrupo' => 'Idgrupo',
             'descricao' => 'Descricao',
             'dt_criacao' => 'Dt Criacao',
-            'trecho_idtrecho' => 'Trecho',
-            'trechoDescricao' => 'Trecho',
+            'trecho_idtrecho' => 'Trecho Idtrecho',
         ];
     }
 
@@ -59,7 +58,7 @@ class Grupo extends \yii\db\ActiveRecord
      */
     public function getAcompanhamentos()
     {
-        return $this->hasMany(Acompanhamento::className(), ['grupo_idgrupo' => 'idgrupo']);
+        return $this->hasMany(\app\models\Acompanhamento::className(), ['grupo_idgrupo' => 'idgrupo']);
     }
 
     /**
@@ -67,7 +66,7 @@ class Grupo extends \yii\db\ActiveRecord
      */
     public function getTrechoIdtrecho()
     {
-        return $this->hasOne(Trecho::className(), ['idtrecho' => 'trecho_idtrecho']);
+        return $this->hasOne(\app\models\Trecho::className(), ['idtrecho' => 'trecho_idtrecho']);
     }
 
     /**
@@ -75,7 +74,7 @@ class Grupo extends \yii\db\ActiveRecord
      */
     public function getGrupoUsuarios()
     {
-        return $this->hasMany(GrupoUsuario::className(), ['grupo_idgrupo' => 'idgrupo']);
+        return $this->hasMany(\app\models\GrupoUsuario::className(), ['grupo_idgrupo' => 'idgrupo']);
     }
 
     /**
@@ -83,10 +82,6 @@ class Grupo extends \yii\db\ActiveRecord
      */
     public function getUsuarioIdusuarios()
     {
-        return $this->hasMany(Usuario::className(), ['idusuario' => 'usuario_idusuario'])->viaTable('grupo_usuario', ['grupo_idgrupo' => 'idgrupo']);
-    }
-
-     public function getTrechoDescricao() {
-     return $this->trechoIdtrecho->descricao;
+        return $this->hasMany(\app\models\Usuario::className(), ['idusuario' => 'usuario_idusuario'])->viaTable('grupo_usuario', ['grupo_idgrupo' => 'idgrupo']);
     }
 }

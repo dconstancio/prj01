@@ -4,28 +4,24 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-use app\models\Bacia;
+use app\models\Trecho;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Rio */
+/* @var $model app\models\Grupo */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="rio-form">
+<div class="grupo-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-
-     
-
     <?= $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
-
-     <?= $form->field($model, 'bacia_idbacia')->dropDownList(
-        ArrayHelper::map(Bacia::find()->all(),'idbacia','descricao')
+     <?= $form->field($model, 'trecho_idtrecho')->dropDownList(
+        ArrayHelper::map(Trecho::find()->all(),'idtrecho','descricao')
  , ['prompt' => 'Selecione']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Adicionar' : 'Editar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Adicionar' : 'Gravar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

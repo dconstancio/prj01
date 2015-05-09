@@ -44,8 +44,8 @@ class Rio extends \yii\db\ActiveRecord
         return [
             'idrio' => 'Idrio',
             'bacia_idbacia' => 'Bacia',
-             'BaciaDescricao' => 'Bacia',
-            'descricao' => 'Descricao',
+             'baciaDescricao' => 'Bacia',
+            'descricao' => 'Nome',
         ];
     }
 

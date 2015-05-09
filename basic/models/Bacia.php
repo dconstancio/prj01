@@ -42,7 +42,7 @@ class Bacia extends \yii\db\ActiveRecord
     {
         return [
             'idbacia' => 'Idbacia',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
             'status' => 'Status',
         ];
     }

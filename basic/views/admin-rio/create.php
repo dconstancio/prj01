@@ -4,9 +4,9 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\rio */
+/* @var $model app\models\Rio */
 
-$this->title = 'Create Rio';
+$this->title = 'Adicionar Rio';
 $this->params['breadcrumbs'][] = ['label' => 'Rios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

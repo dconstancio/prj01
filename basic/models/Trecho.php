@@ -46,10 +46,11 @@ class Trecho extends \yii\db\ActiveRecord
     {
         return [
             'idtrecho' => 'Idtrecho',
-            'rio_idrio' => 'Rio Idrio',
-            'descricao' => 'Descricao',
-            'lat' => 'Lat',
-            'lon' => 'Lon',
+             'rio_idrio' => 'Rio',
+            'rioDescricao' => 'Rio',
+            'descricao' => 'Descrição',
+            'lat' => 'Latitude',
+            'lon' => 'Longitude',
         ];
     }
 
@@ -67,5 +68,9 @@ class Trecho extends \yii\db\ActiveRecord
     public function getRioIdrio()
     {
         return $this->hasOne(Rio::className(), ['idrio' => 'rio_idrio']);
+    }
+
+      public function getRioDescricao() {
+     return $this->rioIdrio->descricao;
     }
 }

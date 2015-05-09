@@ -319,4 +319,13 @@ return array (
       '@kartik/icons' => $vendorDir . '/kartik-v/yii2-icons',
     ),
   ),
+  '2amigos/yii2-google-places-library' => 
+  array (
+    'name' => '2amigos/yii2-google-places-library',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@dosamigos/google/places' => $vendorDir . '/2amigos/yii2-google-places-library',
+    ),
+  ),
 );

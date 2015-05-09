@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\bacia;
-use app\models\baciaSearch;
+use app\models\GrupoUsuario;
+use app\models\adminGrupoUsuarioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdminBaciaController implements the CRUD actions for bacia model.
+ * AdminGrupoUsuarioController implements the CRUD actions for GrupoUsuario model.
  */
-class AdminBaciaController extends Controller
+class AdminGrupoUsuarioController extends Controller
 {
     public function behaviors()
     {
@@ -27,13 +27,12 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Lists all bacia models.
+     * Lists all GrupoUsuario models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $this->layout = '/adm';
-        $searchModel = new baciaSearch();
+        $searchModel = new adminGrupoUsuarioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -43,30 +42,29 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Displays a single bacia model.
-     * @param integer $id
+     * Displays a single GrupoUsuario model.
+     * @param integer $grupo_idgrupo
+     * @param integer $usuario_idusuario
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($grupo_idgrupo, $usuario_idusuario)
     {
-         $this->layout = '/adm';
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($grupo_idgrupo, $usuario_idusuario),
         ]);
     }
 
     /**
-     * Creates a new bacia model.
+     * Creates a new GrupoUsuario model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-         $this->layout = '/adm';
-        $model = new bacia();
+        $model = new GrupoUsuario();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbacia]);
+            return $this->redirect(['view', 'grupo_idgrupo' => $model->grupo_idgrupo, 'usuario_idusuario' => $model->usuario_idusuario]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,18 +73,18 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Updates an existing bacia model.
+     * Updates an existing GrupoUsuario model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param integer $grupo_idgrupo
+     * @param integer $usuario_idusuario
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($grupo_idgrupo, $usuario_idusuario)
     {
-         $this->layout = '/adm';
-        $model = $this->findModel($id);
+        $model = $this->findModel($grupo_idgrupo, $usuario_idusuario);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbacia]);
+            return $this->redirect(['view', 'grupo_idgrupo' => $model->grupo_idgrupo, 'usuario_idusuario' => $model->usuario_idusuario]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -95,29 +93,30 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Deletes an existing bacia model.
+     * Deletes an existing GrupoUsuario model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param integer $grupo_idgrupo
+     * @param integer $usuario_idusuario
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($grupo_idgrupo, $usuario_idusuario)
     {
-        
-        $this->findModel($id)->delete();
+        $this->findModel($grupo_idgrupo, $usuario_idusuario)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the bacia model based on its primary key value.
+     * Finds the GrupoUsuario model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return bacia the loaded model
+     * @param integer $grupo_idgrupo
+     * @param integer $usuario_idusuario
+     * @return GrupoUsuario the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($grupo_idgrupo, $usuario_idusuario)
     {
-        if (($model = bacia::findOne($id)) !== null) {
+        if (($model = GrupoUsuario::findOne(['grupo_idgrupo' => $grupo_idgrupo, 'usuario_idusuario' => $usuario_idusuario])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

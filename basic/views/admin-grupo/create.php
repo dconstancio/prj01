@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\bacia */
+/* @var $model app\models\Grupo */
 
-$this->title = 'Adicionar Bacia';
-$this->params['breadcrumbs'][] = ['label' => 'Bacias', 'url' => ['index']];
+$this->title = 'Adicionar Grupo';
+$this->params['breadcrumbs'][] = ['label' => 'Grupos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="bacia-create">
+<div class="grupo-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

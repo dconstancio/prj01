@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\rio;
+use app\models\Grupo;
 
 /**
- * rioSearch represents the model behind the search form about `app\models\rio`.
+ * adminGrupoSearch represents the model behind the search form about `app\models\Grupo`.
  */
-class rioSearch extends rio
+class adminGrupoSearch extends Grupo
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class rioSearch extends rio
     public function rules()
     {
         return [
-            [['idrio', 'bacia_idbacia'], 'integer'],
-            [['descricao'], 'safe'],
+            [['idgrupo', 'trecho_idtrecho'], 'integer'],
+            [['descricao', 'dt_criacao'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class rioSearch extends rio
      */
     public function search($params)
     {
-        $query = rio::find();
+        $query = Grupo::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,13 +54,14 @@ class rioSearch extends rio
             // $query->where('0=1');
             return $dataProvider;
         }
- 
+
         $query->andFilterWhere([
-            'idrio' => $this->idrio,
-            'bacia_idbacia' => $this->bacia_idbacia,
+            'idgrupo' => $this->idgrupo,
+            'trecho_idtrecho' => $this->trecho_idtrecho,
         ]);
 
-        $query->andFilterWhere(['like', 'descricao', $this->descricao]);
+        $query->andFilterWhere(['like', 'descricao', $this->descricao])
+            ->andFilterWhere(['like', 'dt_criacao', $this->dt_criacao]);
 
         return $dataProvider;
     }

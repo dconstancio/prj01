@@ -98,6 +98,10 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->hasOne(Perfil::className(), ['idperfil' => 'perfil_idperfil']);
     }
 
+     public function getPerfilDescricao() {
+     return $this->perfilIdperfil->descricao;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

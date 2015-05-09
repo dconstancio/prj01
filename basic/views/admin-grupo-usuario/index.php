@@ -4,28 +4,29 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\adminRioSearch */
+/* @var $searchModel app\models\adminGrupoUsuarioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Rios';
+$this->title = 'Grupo Usuarios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="rio-index">
+<div class="grupo-usuario-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Adicionar Rio', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Grupo Usuario', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        // 'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'baciaDescricao',
-            'descricao',
+
+            'grupo_idgrupo',
+            'usuario_idusuario',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

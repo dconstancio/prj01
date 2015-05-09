@@ -3,12 +3,12 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\rio */
+/* @var $model app\models\Rio */
 
-$this->title = 'Update Rio: ' . ' ' . $model->idrio;
+$this->title = 'Editar Rio: ' . ' ' . $model->descricao;
 $this->params['breadcrumbs'][] = ['label' => 'Rios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->idrio, 'url' => ['view', 'id' => $model->idrio]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => $model->descricao, 'url' => ['view', 'id' => $model->idrio]];
+$this->params['breadcrumbs'][] = 'Editar';
 ?>
 <div class="rio-update">
 

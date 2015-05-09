@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuario */
 
-$this->title = $model->idusuario;
+$this->title = $model->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -14,31 +14,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idusuario], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->idusuario], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+   
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idusuario',
+           // 'idusuario',
             'nome',
             'username',
-            'password',
+            //'password',
             'telefone',
-            'perfil_idperfil',
-            'status_idstatus',
-            'authKey',
-            'password_reset_token',
+             ['label'=>'Perfíl', 'attribute'=>'perfilDescricao'],
+           // 'status_idstatus',
+            //'authKey',
+            //'password_reset_token',
             'status',
         ],
     ]) ?>
-
+ <p>
+        <?= Html::a('Editar', ['update', 'id' => $model->idusuario], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->idusuario], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                 'confirm' => 'Você deseja apagar este item? Esta ação não poderá ser desfeita.',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
 </div>

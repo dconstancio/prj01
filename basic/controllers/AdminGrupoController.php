@@ -3,16 +3,18 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\bacia;
-use app\models\baciaSearch;
+use app\models\Grupo;
+use app\models\GrupoUsuario;
+use app\models\adminGrupoSearch;
+use app\models\adminGrupoUsuarioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdminBaciaController implements the CRUD actions for bacia model.
+ * AdminGrupoController implements the CRUD actions for Grupo model.
  */
-class AdminBaciaController extends Controller
+class AdminGrupoController extends Controller
 {
     public function behaviors()
     {
@@ -27,13 +29,13 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Lists all bacia models.
+     * Lists all Grupo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $this->layout = '/adm';
-        $searchModel = new baciaSearch();
+          $this->layout = '/adm';
+        $searchModel = new adminGrupoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -43,30 +45,36 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Displays a single bacia model.
+     * Displays a single Grupo model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-         $this->layout = '/adm';
+          $searchModel = new adminGrupoUsuarioSearch();
+         $dataProvider = $searchModel->searchGrupo(Yii::$app->request->queryParams,$id);
+
+          $this->layout = '/adm';
+          $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'modelU' => $dataProvider
+
         ]);
     }
 
     /**
-     * Creates a new bacia model.
+     * Creates a new Grupo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-         $this->layout = '/adm';
-        $model = new bacia();
+          $this->layout = '/adm';
+        $model = new Grupo();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbacia]);
+            return $this->redirect(['view', 'id' => $model->idgrupo]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,18 +83,18 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Updates an existing bacia model.
+     * Updates an existing Grupo model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-         $this->layout = '/adm';
+          $this->layout = '/adm';
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idbacia]);
+            return $this->redirect(['view', 'id' => $model->idgrupo]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -95,29 +103,29 @@ class AdminBaciaController extends Controller
     }
 
     /**
-     * Deletes an existing bacia model.
+     * Deletes an existing Grupo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the bacia model based on its primary key value.
+     * Finds the Grupo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return bacia the loaded model
+     * @return Grupo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = bacia::findOne($id)) !== null) {
+          $this->layout = '/adm';
+        if (($model = Grupo::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

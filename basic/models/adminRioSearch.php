@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\rio;
+use app\models\Rio;
 
 /**
- * rioSearch represents the model behind the search form about `app\models\rio`.
+ * adminRioSearch represents the model behind the search form about `app\models\Rio`.
  */
-class rioSearch extends rio
+class adminRioSearch extends Rio
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class rioSearch extends rio
      */
     public function search($params)
     {
-        $query = rio::find();
+        $query = Rio::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,7 +54,7 @@ class rioSearch extends rio
             // $query->where('0=1');
             return $dataProvider;
         }
- 
+
         $query->andFilterWhere([
             'idrio' => $this->idrio,
             'bacia_idbacia' => $this->bacia_idbacia,

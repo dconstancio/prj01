@@ -4,22 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\adminRioSearch */
+/* @var $model app\models\adminGrupoUsuarioSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="rio-search">
+<div class="grupo-usuario-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'idrio') ?>
+    <?= $form->field($model, 'grupo_idgrupo') ?>
 
-    <?= $form->field($model, 'bacia_idbacia') ?>
-
-    <?= $form->field($model, 'descricao') ?>
+    <?= $form->field($model, 'usuario_idusuario') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

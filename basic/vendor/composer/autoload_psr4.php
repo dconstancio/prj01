@@ -47,7 +47,11 @@ return array(
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
     'kartik\\alert\\' => array($vendorDir . '/kartik-v/yii2-widget-alert'),
     'kartik\\affix\\' => array($vendorDir . '/kartik-v/yii2-widget-affix'),
+    'dosamigos\\google\\places\\' => array($vendorDir . '/2amigos/yii2-google-places-library'),
+    'dosamigos\\google\\maps\\' => array($vendorDir . '/2amigos/yii2-google-maps-library'),
     'dmstr\\bootstrap\\' => array($vendorDir . '/dmstr/yii2-bootstrap'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'GuzzleHttp\\Stream\\' => array($vendorDir . '/guzzlehttp/streams/src'),
+    'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );
