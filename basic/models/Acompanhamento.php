@@ -11,10 +11,16 @@ use Yii;
  * @property integer $grupo_idgrupo
  * @property integer $usuario_idusuario
  * @property string $dt_cadastro
+ * @property string $hr_cadastro
+ * @property string $area
+ * @property string $largura
+ * @property string $profundidade
+ * @property string $latitude
+ * @property string $longitude
  *
  * @property Grupo $grupoIdgrupo
  * @property Usuario $usuarioIdusuario
- * @property AcompanhamentoPesquisa[] $acompanhamentoPesquisas
+ * @property AcompanhamentoPerguntaResposta[] $acompanhamentoPerguntaRespostas
  */
 class Acompanhamento extends \yii\db\ActiveRecord
 {
@@ -34,7 +40,10 @@ class Acompanhamento extends \yii\db\ActiveRecord
         return [
             [['grupo_idgrupo', 'usuario_idusuario'], 'required'],
             [['grupo_idgrupo', 'usuario_idusuario'], 'integer'],
-            [['dt_cadastro'], 'string', 'max' => 45]
+            [['dt_cadastro'], 'safe'],
+            [['hr_cadastro'], 'string', 'max' => 10],
+            [['area'], 'string', 'max' => 155],
+            [['largura', 'profundidade', 'latitude', 'longitude'], 'string', 'max' => 45]
         ];
     }
 
@@ -48,6 +57,12 @@ class Acompanhamento extends \yii\db\ActiveRecord
             'grupo_idgrupo' => 'Grupo Idgrupo',
             'usuario_idusuario' => 'Usuario Idusuario',
             'dt_cadastro' => 'Dt Cadastro',
+            'hr_cadastro' => 'Hr Cadastro',
+            'area' => 'Area',
+            'largura' => 'Largura',
+            'profundidade' => 'Profundidade',
+            'latitude' => 'Latitude',
+            'longitude' => 'Longitude',
         ];
     }
 
@@ -70,8 +85,8 @@ class Acompanhamento extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAcompanhamentoPesquisas()
+    public function getAcompanhamentoPerguntaRespostas()
     {
-        return $this->hasMany(AcompanhamentoPesquisa::className(), ['acompanhamento_idacompanhamento' => 'idacompanhamento']);
+        return $this->hasMany(AcompanhamentoPerguntaResposta::className(), ['idacompanhamento' => 'idacompanhamento']);
     }
 }

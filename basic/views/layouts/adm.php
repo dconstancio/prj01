@@ -46,6 +46,12 @@ AppAsset::register($this);
                         ['label' => 'Bacias', 'url' => ['/admin-bacia/index']],
                         ['label' => 'Rios', 'url' => ['/admin-rio/index']],
                         ['label' => 'Trechos', 'url' => ['/admin-trecho/index']],
+                        '<li class="divider"></li>',
+                        ['label' => 'Grupos de Pergunta', 'url' => ['/admin-pergunta-grupo/index']],
+                        ['label' => 'Perguntas', 'url' => ['/admin-pergunta/index']],
+                        ['label' => 'Respostas', 'url' => ['/admin-pergunta-resposta/index']],
+                        '<li class="divider"></li>',
+                          ['label' => 'Pesquisa', 'url' => ['/admin-pesquisa/index']],
 
                     ],  
                     'visible' => !Yii::$app->user->isGuest ],

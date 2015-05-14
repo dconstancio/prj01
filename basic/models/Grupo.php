@@ -78,6 +78,8 @@ class Grupo extends \yii\db\ActiveRecord
         return $this->hasMany(GrupoUsuario::className(), ['grupo_idgrupo' => 'idgrupo']);
     }
 
+    
+
     /**
      * @return \yii\db\ActiveQuery
      */
