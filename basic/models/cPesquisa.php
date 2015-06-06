@@ -4,6 +4,10 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use yii\db\Query;
+use Date;
+use DateTime;
+
 
 /**
  * This is the model class for table "acompanhamento".
@@ -35,19 +39,65 @@ class cPesquisa extends Model
    public $latitude;
    public $longitude;
    public $pgs;
+   public $isNewRecord;
+
+
+
+   public function attributeLabels()
+    {
+        return [
+            'idacompanhamento' => 'Idacompanhamento',
+            'grupo_idgrupo' => 'Grupo Idgrupo',
+            'usuario_idusuario' => 'Usuario Idusuario',
+            'dt_cadastro' => 'Data de cadastro',
+            'hr_cadastro' => 'Hora de Cadastro',
+            'area' => 'Área',
+            'largura' => 'Largura',
+            'profundidade' => 'Profundidade',
+            'latitude' => 'Latitude',
+            'longitude' => 'Longitude',
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            [['grupo_idgrupo', 'usuario_idusuario','dt_cadastro','hr_cadastro','area','largura','profundidade','latitude','longitude','pgs[1][resposta]'], 'required'],
+            [['grupo_idgrupo', 'usuario_idusuario'], 'integer'],
+            [['dt_cadastro'], 'safe'],
+            [['hr_cadastro'], 'string', 'max' => 10],
+            [['area'], 'string', 'max' => 155],
+            [['largura', 'profundidade', 'latitude', 'longitude'], 'string', 'max' => 45]
+        ];
+    }
+
+
 
    public function init()
    {
  
+    $isNewRecord = TRUE;
 
 
     $busca_perguntas = Pergunta::find()
-                -> all();
+                   -> all();
         $i = 0;
         foreach ($busca_perguntas as $pg) {
 
+            unset($tmp);
             $tmp['id'] = $pg->idpergunta;
             $tmp['pergunta'] = $pg->pergunta;
+
+            if ($pg->exibeGrupo == 1 ) {
+               $tmp['nomeGrupo'] = $pg->perguntaGrupo->descricao;
+            
+            }
+            else
+            {
+              $tmp['nomeGrupo'] = "";  
+            }
+
+          
             $tmp['resposta'] = '0';
           
 
@@ -56,6 +106,7 @@ class cPesquisa extends Model
                     ->where(['idpergunta' => $pg->idpergunta])
                     -> all();
                      $z = 0;
+                   
                     foreach ($busca_respostas as $rs) {
             
                          $tmp['respostas'][$z]['id'] = $rs->idpergunta_resposta;
@@ -75,6 +126,56 @@ class cPesquisa extends Model
 
    }
   
+  public function salvar($p)
+  {
+        $p = $p['cPesquisa'];
+       $connection = \Yii::$app->db;
+       $session = Yii::$app->session;
+       $usu =  $session['user'];
+      
+        $transaction = $connection->beginTransaction();
+try {
+    
+    $date = strtotime(str_replace('/', '-', $p['dt_cadastro']));
+
+   $acompanhamento =  $connection ->createCommand()
+                ->insert('acompanhamento', [
+                        'grupo_idgrupo' =>  $usu -> grupo_idgrupo,
+                        'usuario_idusuario'=> $usu -> idusuario,
+                        'dt_cadastro' => $date,
+                        'hr_cadastro' => $p['hr_cadastro'],
+                        'area' => $p['area'],
+                        'largura' => $p['largura'],
+                        'profundidade' => $p['profundidade'],
+                        'latitude' => $p['latitude'],
+                        'longitude' => $p['longitude']
+                        ])
+                ->execute();
+
+             $id = Yii::$app->db->getLastInsertID();
+             
+                for ($i=0; $i < count($p['pgs']); $i++) { 
+            
+                $connection ->createCommand()
+                ->insert('acompanhamento_pergunta_resposta', [
+                       'idacompanhamento' => $id,
+                        'idpergunta' => $p['pgs'][$i]['id'],
+                        'idresposta' => $p['pgs'][$i]['resposta']
+                        ])
+                ->execute();
+                }
+    
+    $transaction->commit();
+} catch(Exception $e) {
+     print_r($e);
+    $transaction->rollback();
+}
+
+       
+
+    return TRUE;
+
+  }
 
 }
 

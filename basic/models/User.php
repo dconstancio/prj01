@@ -9,6 +9,8 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public $id;
     public $username;
     public $password;
+    public $perfil_idperfil;
+    public $grupo;
     public $authKey;
     public $accessToken;
  

@@ -9,6 +9,8 @@ use app\assets\AppAsset;
 /* @var $content string */
 
 AppAsset::register($this);
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -18,41 +20,19 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+
     <?php $this->head() ?>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
 <?php $this->beginBody() ?>
-    <div class="wrap">
-        <?php
-            NavBar::begin([
-                'brandLabel' => 'Sistema',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-            ]);
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    // ['label' => 'About', 'url' => ['/site/about']],
-                    // ['label' => 'Contact', 'url' => ['/site/contact']],
-                    ['label' => 'Administração', 'url' => ['/adm/index'], 'visible' => !Yii::$app->user->isGuest ],
-                     Yii::$app->user->isGuest ?
-                        ['label' => 'Entrar', 'url' => ['/site/login']] :
-                        ['label' => 'Sair (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],
-                ],
-            ]);
-            NavBar::end();
-        ?>
+    <div class="wrap main">
+      
 
         <div class="container">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
+
             <?= $content ?>
         </div>
     </div>

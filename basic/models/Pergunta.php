@@ -59,7 +59,7 @@ class Pergunta extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdperguntagrupo0()
+    public function getPerguntaGrupo()
     {
         return $this->hasOne(PerguntaGrupo::className(), ['idpergunta_grupo' => 'idperguntagrupo']);
     }

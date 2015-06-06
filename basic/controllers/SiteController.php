@@ -7,10 +7,18 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\ContatoForm;
 
 class SiteController extends Controller
 {
+
+      public function init()
+    {
+        parent::init();
+        \Yii::$app->language = 'pt-BR';
+       
+    }
+
     public function behaviors()
     {
         return [
@@ -49,9 +57,34 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        
+        $model = new ContatoForm();
+        return $this->render('index', [
+                'model' => $model,
+            ]);
     }
+    public function actionFormContato()
+    {
 
+         $model = new ContatoForm();
+       
+         if ($model->load(Yii::$app->request->post())) {
+            Yii::$app->session->setFlash('contatoFormSubmitted');
+
+           if($model->send('nao.responder@baiadeguanabara.org.br'))
+            {
+
+                $items = ['ok'];
+            }
+            else
+            {
+                $items = ['erro'];
+            }
+             \Yii::$app->response->format = 'json';
+                return $items;
+           
+        } 
+    }
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {

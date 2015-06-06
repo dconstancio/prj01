@@ -19,8 +19,20 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'lib/owl.carousel/owl-carousel/owl.carousel.css',
+        'lib/owl.carousel/owl-carousel/owl.theme.css',
+        'lib/owl.carousel/owl-carousel/owl.transitions.css',
+        'css/scrolling-nav.css',
+        'lib/pretty/css/prettyPhoto.css',
     ];
     public $js = [
+       
+        'lib/owl.carousel/owl-carousel/owl.carousel.js',
+        'js/jquery.easing.min.js',
+        'js/scrolling-nav.js',
+        'js/publico.js',
+        'lib/pretty/js/jquery.prettyPhoto.js'
+
     ];
     public $depends = [
         'yii\web\YiiAsset',

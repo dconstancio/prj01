@@ -114,7 +114,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
 
         return $usuario = Usuario::find()
-                ->where(['username' => $username,'password' => $password,'status_idstatus' => 1])
+                ->where(['username' => $username,'password' => $password,'status' => 'Ativo'])
                 ->one();
     }
 

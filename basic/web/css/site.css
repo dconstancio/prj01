@@ -12,11 +12,12 @@ body {
 
 .wrap > .container {
     padding: 70px 15px 20px;
+    padding-top:0px;
 }
 
 .footer {
-    height: 60px;
-    background-color: #f5f5f5;
+    height: 300px;
+    background-color: #1ea78d;
     border-top: 1px solid #ddd;
     padding-top: 20px;
 }
@@ -88,4 +89,122 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
+}
+
+/*************************************************************************************************************
+
+--------------  WEBSITE 
+
+*************************************************************************************************************/
+
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,latin-ext);
+
+#page-top{ background: #282828;}
+
+
+.main .container{padding:0px; width: auto !important; max-width: 1360px; overflow-x:hidden;  }
+.site-index{margin-top:-3px; font-family: 'PT Sans', sans-serif;}
+
+.main .navbar-default{ background-color:rgba(0, 0, 0, 0.6); border:none;  font-family: 'PT Sans'; }
+.main .navbar-brand{ padding:0px; margin-left:20px !important;}
+.main .navbar-right{ margin-right: 30px;}
+.main .navbar-default .navbar-nav > li > a {color:#fff;}
+
+#main-carousel .item img, #idealizadores-carousel .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#main-carousel .owl-pagination {margin-top:-36px !important;}
+
+#main-carousel  .owl-controls .owl-page span { background: transparent !important; border: 1px solid #fff;}
+#main-carousel  .owl-controls .owl-page.active span { background:#fff !important; border: 1px solid #fff; opacity: 0.5 !important;}
+
+#idealizadores{ text-align: center; padding-top:40px; padding-bottom: 30px;}
+
+#idealizadores-carousel .owl-controls .owl-page span { width: 10px; height: 10px; background: transparent !important; border: 1px solid #666;}
+#idealizadores-carousel .owl-controls .owl-page.active span { background:#666 !important; border: 1px solid #666; opacity: 0.5 !important;}
+.h3id{margin-bottom: 40px;}
+
+
+#galeria{ text-align: center; padding-top:40px;}
+ .owl-controls .owl-page span { width: 10px; height: 10px;}
+#galeria-carousel .owl-controls .owl-page span {  background: transparent !important; border: 1px solid #666;}
+#galeria-carousel .owl-controls .owl-page.active span { background:#666 !important; border: 1px solid #666; opacity: 0.5 !important;}
+
+#pesquisa{ text-align: center; padding-top:40px; }
+#contato{ text-align: center; padding-top:40px; padding-bottom: 30px;}
+
+#contato h3.bitter{ margin-bottom: 40px;}
+.btEnviar{background-image: url("../images/envelope.jpg");
+background-repeat: no-repeat;
+background-position: 3px 4px;
+height: 30px;
+border: none;
+background-color: #fff;
+padding-left: 43px;
+float: right;
+margin-right: 10px;
+font-weight: bold;
+font-family: 'PT Sans', sans-serif;
+}
+
+.btEnviar:hover{
+   color:#0eb493;
+}
+.endereco{text-align: left; font-weight: bold;  }
+.endereco2{color: #5b646e; font-weight: normal;}
+
+
+
+
+.bitter{font-family: 'Bitter', serif; color:#0eb493; font-size: 22px; text-transform: uppercase; font-weight: bold;  
+    background-image: url('../images/separador.png');
+    background-repeat: no-repeat;
+    background-attachment: absolute;
+        background-position: 50% 39px;
+        height: 50px;
+        margin-top:40px;}
+.subTituloFotos{ color: #5b646e; font-size: 16px; margin-bottom: 60px}
+.branco{ background: #fff !important;}
+.branco1{background:#f4f7f9 !important;}
+.cinza1{ background: #f4f7f9 !important;}
+#frase{ font-size: 32px; color: #fff; text-align: center; display: block; width: 100%; position: absolute;
+margin-top: -10%; font-family: 'PT Sans';}
+
+.form-control{border-radius: 2px;}
+
+
+
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modalf {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 0, 0, 0, .5 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modalf {
+    display: block;
 }
