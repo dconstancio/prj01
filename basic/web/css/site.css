@@ -102,7 +102,8 @@ a.desc:after {
 #page-top{ background: #282828;}
 
 
-.main .container{padding:0px; width: auto !important; max-width: 1360px; overflow-x:hidden;  }
+/*.main .container, .footer .container{padding:0px; width: auto !important; max-width: 1360px; overflow-x:hidden;  }*/
+.zeraPadding{padding: 0px !important;}
 .site-index{margin-top:-3px; font-family: 'PT Sans', sans-serif;}
 
 .main .navbar-default{ background-color:rgba(0, 0, 0, 0.6); border:none;  font-family: 'PT Sans'; }
@@ -127,7 +128,7 @@ a.desc:after {
 #idealizadores-carousel .owl-controls .owl-page.active span { background:#666 !important; border: 1px solid #666; opacity: 0.5 !important;}
 .h3id{margin-bottom: 40px;}
 
-
+#projeto{ text-align: center; padding-top:40px;}
 #galeria{ text-align: center; padding-top:40px;}
  .owl-controls .owl-page span { width: 10px; height: 10px;}
 #galeria-carousel .owl-controls .owl-page span {  background: transparent !important; border: 1px solid #666;}
@@ -174,8 +175,42 @@ font-family: 'PT Sans', sans-serif;
 margin-top: -10%; font-family: 'PT Sans';}
 
 .form-control{border-radius: 2px;}
+.footer h2{
 
+    color: #fff;
+font-size: 15px;
+font-weight: bold;
+margin-top: 43px;
+margin-bottom: 20px;
+}
+.footer ul{list-style: none;
+padding: 0px !important;}
+.footer ul li a{ color:#fff; font-size: 11px;  padding: 5px 0px;
+display: block;}
+.footer .subtexto{
 
+    color: #fff;
+margin-top: 86px;
+padding-left: 117px;
+font-size: 11px;
+line-height: 20px;
+}
+.footer .creditos{
+    color: #fff;
+margin-top: 80px;
+font-size: 12px;
+font-weight: bold;
+border-left:2px solid #177e72;
+padding-left: 20px;
+}
+
+.footer .creditos span{
+
+     color: #177e72 !important; 
+     display: block;
+     padding-top:5px;
+
+}
 
 
 /* Start by setting display:none to make this hidden.

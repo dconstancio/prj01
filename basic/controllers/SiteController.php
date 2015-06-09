@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContatoForm;
+use app\models\HomePesquisa;
 
 class SiteController extends Controller
 {
@@ -61,6 +62,7 @@ class SiteController extends Controller
         $model = new ContatoForm();
         return $this->render('index', [
                 'model' => $model,
+                'pesquisa' => new HomePesquisa()
             ]);
     }
     public function actionFormContato()
@@ -132,5 +134,31 @@ class SiteController extends Controller
     public function actionSay($message = 'Hello')
     {
        return $this->render('say', ['message'=>$message]);
+    }
+
+
+
+    public function actionTrechos($id){
+       $hp = new HomePesquisa();
+        
+        $tre = $hp->getTrechos($id);
+        $ret = "";
+      
+         if(count($tre) > 0){
+                 echo "<option>Selecione o trecho</option>";
+                foreach ($tre as $h) {
+                
+                  echo "<option value=".$h->idtrecho.">".$h->descricao ."( ".$h->lat." | ".$h->lon." )</option>";
+                
+                }
+
+                
+        }
+        else
+        {
+             echo "<option>Nenhum trecho cadastrado</option>";
+        }
+        echo $ret ;
+  
     }
 }
