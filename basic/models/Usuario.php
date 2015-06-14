@@ -41,7 +41,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['perfil_idperfil', 'status'], 'required'],
-            [['perfil_idperfil'], 'integer'],
+            [['perfil_idperfil', 'grupo_idgrupo'], 'integer'],
             [['status'], 'string'],
             [['nome'], 'string', 'max' => 155],
             [['username', 'password', 'telefone'], 'string', 'max' => 45]
@@ -59,6 +59,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'E-mail',
             'password' => 'Senha',
             'telefone' => 'Telefone',
+            'grupo_idgrupo' => 'Grupo',
             'perfil_idperfil' => 'Perfil',
             'authKey' => 'Auth Key',
             'password_reset_token' => 'Password Reset Token',
@@ -77,19 +78,17 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGrupoUsuarios()
-    {
-        return $this->hasMany(GrupoUsuario::className(), ['usuario_idusuario' => 'idusuario']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getGrupoIdgrupos()
     {
-        return $this->hasMany(Grupo::className(), ['idgrupo' => 'grupo_idgrupo'])->viaTable('grupo_usuario', ['usuario_idusuario' => 'idusuario']);
+        return $this->hasOne(Grupo::className(), ['idgrupo' => 'grupo_idgrupo']);
     }
 
+  public function getTrechoIdTrecho()
+    {
+        return $this->hasOne(Trecho::className(), ['idtrecho' =>  $this->grupoIdgrupos->trecho_idtrecho]);
+    }
+
+   
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -100,6 +99,16 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
      public function getPerfilDescricao() {
      return $this->perfilIdperfil->descricao;
+    }
+
+    public function getGrupoDescricao() {
+
+        if ($this->grupoIdgrupos) {
+            return $this->grupoIdgrupos->descricao;
+        }
+        else
+             return 'Não associado';
+    
     }
 
     /**

@@ -7,9 +7,10 @@
       }
     </style>
    <script>
+
 var map;
 var TILE_SIZE = 256;
-var sede = new google.maps.LatLng(-22.88109,-43.09035);
+var sede = new google.maps.LatLng(<?=$lat?>,<?=$lon?>);
 
 function bound(value, opt_min, opt_max) {
   if (opt_min != null) value = Math.max(value, opt_min);
@@ -72,7 +73,7 @@ function createInfoWindowContent() {
       Math.floor(pixelCoordinate.y / TILE_SIZE));
 
   return [
-    'Alameda São Boa Ventura, 770 Fonseca, Niterói, RJ' ].join('<br>');
+    '<?=$tex?>' ].join('<br>');
 }
 
 function initialize() {

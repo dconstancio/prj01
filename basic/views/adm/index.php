@@ -7,5 +7,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-index">
 
-   
+ 
+
 </div>

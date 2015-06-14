@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             // 'idrio',
-            'bacia_idbacia',
+           'baciaDescricao',
             'descricao',
         ],
     ]) ?>

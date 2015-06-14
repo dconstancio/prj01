@@ -225,7 +225,7 @@ $root = Yii::getAlias('@webroot');
  <div class="container">
             <div class="row">
                 <div class="col-lg-12 zeraPadding">
- <?= $this->render( 'mapaPrincipal'); ?>
+ <?= $this->render( 'mapaPrincipal',array('lat'=>'-22.88109','lon'=>'-43.09035','tex'=>'Alameda São Boa Ventura, 770 Fonseca, Niterói, RJ')); ?>
  </div></div></div>
  </section>
 </div>

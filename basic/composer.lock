@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fc0fb621a3e7dcb78b2fd29e1e8d4eaf",
+    "hash": "173017cb8a3ed09b51c404256d8979e5",
     "packages": [
         {
             "name": "2amigos/yii2-google-maps-library",
@@ -2097,6 +2097,55 @@
             "time": "2015-02-26 16:21:10"
         },
         {
+            "name": "maksyutin/yii2-dual-list-box",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maksyutin/yii2-dual-list-box.git",
+                "reference": "d4f165d2a36024cb4e049d74b0730261cdb878dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maksyutin/yii2-dual-list-box/zipball/d4f165d2a36024cb4e049d74b0730261cdb878dc",
+                "reference": "d4f165d2a36024cb4e049d74b0730261cdb878dc",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "maksyutin\\duallistbox\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Maksyutin Dmitriy",
+                    "email": "maksyutin@yandex.ru",
+                    "homepage": "http://maksyutin.ru"
+                },
+                {
+                    "name": "Geodan B.V.",
+                    "homepage": "http://www.geodan.nl"
+                }
+            ],
+            "description": "Dual list box Widget for Yii 2",
+            "keywords": [
+                "dual listview",
+                "dual-list-box",
+                "duallistbox",
+                "widget",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2015-02-27 23:36:21"
+        },
+        {
             "name": "phpspec/php-diff",
             "version": "dev-master",
             "source": {
@@ -2789,7 +2838,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "warrence/yii2-kartikgii": 20
+        "warrence/yii2-kartikgii": 20,
+        "maksyutin/yii2-dual-list-box": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

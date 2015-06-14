@@ -21,7 +21,8 @@
         "schmunk42/yii2-giiant": "*",
         "warrence/yii2-kartikgii": "dev-master",
         "2amigos/yii2-google-maps-library": "*",
-        "2amigos/yii2-google-places-library": "*"
+        "2amigos/yii2-google-places-library": "*",
+        "maksyutin/yii2-dual-list-box": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

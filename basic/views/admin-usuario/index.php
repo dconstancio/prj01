@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'username',
            // 'password',
             //'telefone',
+              ['label'=>'Grupo', 'attribute'=>'grupoDescricao'],
               ['label'=>'Perfíl', 'attribute'=>'perfilDescricao'],
             // 'status_idstatus',
             // 'authKey',

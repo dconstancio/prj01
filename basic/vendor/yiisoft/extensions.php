@@ -328,4 +328,13 @@ return array (
       '@dosamigos/google/places' => $vendorDir . '/2amigos/yii2-google-places-library',
     ),
   ),
+  'maksyutin/yii2-dual-list-box' => 
+  array (
+    'name' => 'maksyutin/yii2-dual-list-box',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@maksyutin/duallistbox' => $vendorDir . '/maksyutin/yii2-dual-list-box',
+    ),
+  ),
 );

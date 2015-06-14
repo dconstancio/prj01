@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Grupo;
+use app\models\Usuario;
 use app\models\GrupoUsuario;
 use app\models\adminGrupoSearch;
 use app\models\adminGrupoUsuarioSearch;
@@ -37,10 +38,13 @@ class AdminGrupoController extends Controller
           $this->layout = '/adm';
         $searchModel = new adminGrupoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+      
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
@@ -54,11 +58,17 @@ class AdminGrupoController extends Controller
           $searchModel = new adminGrupoUsuarioSearch();
          $dataProvider = $searchModel->searchGrupo(Yii::$app->request->queryParams,$id);
 
+        $usuarioGrupo = new GrupoUsuario();
+        $usuarios = Usuario::find();
+
           $this->layout = '/adm';
           $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model,
-            'modelU' => $dataProvider
+            'modelU' => $dataProvider,
+            'usuarios' => $usuarios,
+            'grupoUsu' => $usuarioGrupo,
+
 
         ]);
     }

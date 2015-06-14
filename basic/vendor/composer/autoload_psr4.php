@@ -17,6 +17,7 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'warrence\\kartikgii\\' => array($vendorDir . '/warrence/yii2-kartikgii'),
     'schmunk42\\giiant\\' => array($vendorDir . '/schmunk42/yii2-giiant'),
+    'maksyutin\\duallistbox\\' => array($vendorDir . '/maksyutin/yii2-dual-list-box'),
     'kartik\\widgets\\' => array($vendorDir . '/kartik-v/yii2-widgets'),
     'kartik\\typeahead\\' => array($vendorDir . '/kartik-v/yii2-widget-typeahead'),
     'kartik\\touchspin\\' => array($vendorDir . '/kartik-v/yii2-widget-touchspin'),
