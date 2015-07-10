@@ -14,6 +14,14 @@ use yii\filters\VerbFilter;
  */
 class AdminRioController extends Controller
 {
+
+    public function init()
+    {
+        parent::init();
+        \Yii::$app->language = 'pt-BR';
+        $this->layout = '/adm'; 
+    }
+    
     public function behaviors()
     {
         return [

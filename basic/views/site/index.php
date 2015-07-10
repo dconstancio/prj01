@@ -13,6 +13,7 @@ use dosamigos\google\maps\Map;
 use dosamigos\google\maps\services\DirectionsRequest;
 use dosamigos\google\maps\overlays\Polygon;
 use dosamigos\google\maps\layers\BicyclingLayer;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 $this->title = 'Index';
@@ -169,7 +170,9 @@ $root = Yii::getAlias('@webroot');
                 <div class="col-lg-12">
                      <h3 class="bitter">Pesquisar</h3>
                      <h5 class="subTituloFotos ">Pesquise aqui por trechos dos rios e outros filtros</h5>
-                      <?= $this->render( '/home-pesquisa/index', ['model'=> $pesquisa]); ?>
+                      <?= $this->render( '/home-pesquisa/index', ['model'=> $pesquisa, 'dados' => $dados]); ?>
+                       
+
                 </div>
             </div>
             

@@ -1,0 +1,12 @@
+
+
+
+<?php
+
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=u500171439_bd1',
+    'username' => 'u500171439_bd1',
+    'password' => 'devhomolog',
+    'charset' => 'utf8',
+];

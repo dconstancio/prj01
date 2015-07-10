@@ -62,8 +62,8 @@ echo Nav::widget([
 				// ['label' => 'Grupos de Pergunta', 'url' => ['/admin-pergunta-grupo/index']],
 				// ['label' => 'Perguntas', 'url' => ['/admin-pergunta/index']],
 				// ['label' => 'Respostas', 'url' => ['/admin-pergunta-resposta/index']],
-				 '<li class="divider"></li>',
-				['label' => 'Pesquisa', 'url' => ['/admin-pesquisa/index']],
+				 ['<li class="divider"></li>','visible' => (!Yii::$app->user->isGuest && $idPerfil > 2)],
+				['label' => 'Adicionar pesquisa', 'url' => ['/admin-pesquisa/index'],'visible' => (!Yii::$app->user->isGuest && $idPerfil > 2)],
 
 			],
 			'visible' => (!Yii::$app->user->isGuest && $idPerfil < 3) ],
@@ -78,7 +78,18 @@ NavBar::end();
 ?>
 
         <div class="container">
-            <?=
+          
+
+<div class="row">
+
+<div class="col-sm-3 colInfo">
+
+<?php if(!Yii::$app->user->isGuest) {?>
+ <?= $this->render('/adm/head'); ?>
+ <?php } ?>
+	</div>
+	<div class="col-sm-9">
+	  <?=
 
 Breadcrumbs::widget([
 
@@ -89,16 +100,6 @@ Breadcrumbs::widget([
 
 ],
 ])?>
-
-<div class="row">
-
-<div class="col-sm-2 colInfo">
-
-<?php if(!Yii::$app->user->isGuest) {?>
- <?= $this->render('/adm/head'); ?>
- <?php } ?>
-	</div>
-	<div class="col-sm-10">
             <?=$content?>
         </div>
         
@@ -108,7 +109,7 @@ Breadcrumbs::widget([
         </div>
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; admEmpresa <?=date('Y')?></p>
+            <p class="pull-left">&copy;  <?=date('Y')?></p>
           <!--   <p class="pull-right"><?=Yii::powered()?></p> -->
         </div>
     </footer>

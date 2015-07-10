@@ -71,4 +71,8 @@ class Pergunta extends \yii\db\ActiveRecord
     {
         return $this->hasMany(PerguntaResposta::className(), ['idpergunta' => 'idpergunta']);
     }
+
+     public function getNomeGrupo() {
+     return  $this->perguntaGrupo->descricao; 
+    }
 }

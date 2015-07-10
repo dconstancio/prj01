@@ -56,7 +56,8 @@ class Acompanhamento extends \yii\db\ActiveRecord
             'idacompanhamento' => 'Idacompanhamento',
             'grupo_idgrupo' => 'Grupo Idgrupo',
             'usuario_idusuario' => 'Usuario Idusuario',
-            'dt_cadastro' => 'Dt Cadastro',
+            'DataDescricao' => 'Dt Cadastro',
+            'TrechoDescricao' => 'Trecho',
             'hr_cadastro' => 'Hr Cadastro',
             'area' => 'Area',
             'largura' => 'Largura',
@@ -82,11 +83,48 @@ class Acompanhamento extends \yii\db\ActiveRecord
         return $this->hasOne(Usuario::className(), ['idusuario' => 'usuario_idusuario']);
     }
 
+        /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTrechoIdTrecho()
+    {
+        return $this->hasOne(Trecho::className(), ['idtrecho' => 'trecho_idtrecho']);
+    }
+
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getAcompanhamentoPerguntaRespostas()
     {
         return $this->hasMany(AcompanhamentoPerguntaResposta::className(), ['idacompanhamento' => 'idacompanhamento']);
+    }
+
+    public function getapr()
+    {
+        return $this->hasMany(AcompanhamentoPerguntaResposta::className(), ['idacompanhamento' => 'idacompanhamento']);
+    }
+
+    public function getDataDescricao() {
+     return  date('d/m/Y', $this->dt_cadastro); 
+    }
+    public function getDataDescricao2() {
+     return  date('d/m/Y', $this->dt_cadastro2); 
+    }
+
+    public function getUsuarioDescricao() {
+     return  $this->usuarioIdusuario->nome; 
+    }
+
+    public function getTrechoDescricao() {
+     return  $this->trechoIdTrecho->descricao; 
+    }
+
+     public function getTrechoLat() {
+     return  $this->trechoIdTrecho->lat; 
+    }
+
+     public function getTrechoLon() {
+     return  $this->trechoIdTrecho->lon; 
     }
 }

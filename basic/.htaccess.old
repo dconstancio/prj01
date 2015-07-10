@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^devhomolog.zz.vc$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.devhomolog.zz.vc$
+RewriteCond %{REQUEST_URI} !basic/web/
+RewriteRule (.*) /basic/web/$1 [L]

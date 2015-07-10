@@ -28,14 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
- <?= GridView::widget([
+<!--  <?= GridView::widget([
         'dataProvider' => $modelU,
         //'filterModel' => $searchModel,
         'columns' => [
             'usuario_idusuario',
             'grupo_idgrupo',
         ],
-    ]); ?>
+    ]); ?> -->
 
 
     

@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\ContatoForm;
 use app\models\HomePesquisa;
 use app\models\LoginForm;
+use app\models\cPesquisa;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -58,6 +59,7 @@ class SiteController extends Controller {
 		return $this->render('index', [
 			'model' => $model,
 			'pesquisa' => new HomePesquisa(),
+			'dados' =>[],
 		]);
 	}
 	public function actionFormContato() {
@@ -151,13 +153,12 @@ class SiteController extends Controller {
 		if ($model->load(Yii::$app->request->post())) {
 			Yii::$app->session->setFlash('buscaFormSubmitted');
 
-			print_r($model);die;
-			$items = ['ok'];
-			$items = ['erro'];
-
-			\Yii::$app->response->format = 'json';
-			return $items;
-
+            $s = new cPesquisa();
+          $data =  $s->buscaResultados($model);
+ 
+ 
+      return  $this->renderPartial('/home-pesquisa/index', ['dados' => $data, 'model' => new HomePesquisa()]);
+    
 		}
 	}
 }

@@ -11,11 +11,15 @@
 
   $id = Yii::$app->user->identity->idusuario;
   $u =  Usuario::findOne($id);
-  $t = Trecho::findOne($u->grupoIdgrupos->trecho_idtrecho)
+  if($u->grupoDescricao != 'Não associado')
+  $t = Trecho::findOne($u->grupoIdgrupos->trecho_idtrecho);
+
+  $a = Yii::$app->controller->id .'/'. Yii::$app->controller->action->id;
 
 
   ?>
   <style>
+  .headAdm{margin-top:70px;}
   	.lbel{ font-size: 10px; color:#666;}
   	.subTrecho { border: 1px solid #eee; background: #fff; margin-top:10px; padding:5px;}
   </style>
@@ -29,9 +33,16 @@
   			<div class="subTrecho">
   			<div class="lbel">Trecho</div>
   			<?=$t->descricao?>
+  		
 
-  			 <?= $this->render( '/site/mapaPrincipal',array('lat'=>'-22.88109','lon'=>'-43.09035','tex'=>'Alameda São Boa Ventura, 770 Fonseca, Niterói, RJ')); ?>
+  			 <?= $this->render( '/site/mapaPrincipal',array('lat'=>''.$t->lat.'','lon'=>''.$t->lon.'','tex'=>''.$t->descricao.'')); ?>
 
+<div style="text-align:center;padding-top:10px;">
+
+<?php if($a != 'admin-pesquisa/index'){
+echo Html::a('Preencher pesquisa', ['/admin-pesquisa/index'], ['class'=>'btn btn-primary btn-lg']);} ?>
+
+	</div>
   			</div>
   			<?php }?>
 

@@ -45,6 +45,7 @@ class AcompanhamentoPerguntaResposta extends \yii\db\ActiveRecord
             'idacompanhamento' => 'Idacompanhamento',
             'idpergunta' => 'Idpergunta',
             'idresposta' => 'Idresposta',
+            'perguntaDescricao' => 'pdesc'
         ];
     }
 
@@ -70,5 +71,25 @@ class AcompanhamentoPerguntaResposta extends \yii\db\ActiveRecord
     public function getIdresposta0()
     {
         return $this->hasOne(PerguntaResposta::className(), ['idpergunta_resposta' => 'idresposta']);
+    }
+
+     public function getPergunta() {
+     return  $this->idpergunta0->pergunta; 
+    }
+
+     public function getExibeGrupo() {
+     return  $this->idpergunta0->exibeGrupo; 
+    }
+
+    public function getResposta() {
+     return  $this->idresposta0->resposta; 
+    }
+
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNomeGrupo()
+    {
+        return  $this->idpergunta0->nomeGrupo; 
     }
 }
